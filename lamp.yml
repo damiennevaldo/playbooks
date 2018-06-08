@@ -10,3 +10,11 @@
       yum: name={{item}} state=present
       with_items: "{{lamp_packages_el}}"
       when: ansible_os_family == "RedHat"
+      
+    - name: Redémarrage des services Centos/RedHat
+      shell: systemctl restart http mariadb && systemctl enable http mariadb
+      when: ansible_os_family == "RedHat"
+      
+    - name: Ouverture du pare-feu RedHat
+      shell: firewall-cmd --permanent --zone=public --add-service=http && firewall-cmd --reload
+      when: ansible_os_family == "Debian"
