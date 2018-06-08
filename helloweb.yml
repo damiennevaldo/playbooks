@@ -1,0 +1,10 @@
+---
+- hosts: "{{target}}"
+  tasks:
+    - name: install helloweb
+      docker_container:
+        name: helloweb
+        image: yodamien0/helloweb
+        ports:
+          - 81:80
+      when: (ansible_distribution == "{{distribution}}" or ansible_os-family == "{{linux_family}}")
