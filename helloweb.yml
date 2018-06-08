@@ -7,4 +7,4 @@
         image: yodamien0/helloweb
         ports:
           - 81:80
-      when: (ansible_distribution == "{{linux_distribution}}" or ansible_os-family == "{{linux_family}}")
+      when: (ansible_distribution == "Linux" or ansible_os-family == "Debian")
